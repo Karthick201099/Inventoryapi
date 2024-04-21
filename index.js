@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use("/products", Product);
 app.use("/orders", Order);
-app.use("/login", Login);
+app.use("/auth", Login);
 
 const port = 4000;
 app.listen(port, () => {

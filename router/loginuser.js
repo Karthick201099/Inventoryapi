@@ -26,7 +26,7 @@ router.get("/signinusers", async (req, res) => {
 });
 // to request & response to the api and database /  signin
 
-router.post("/signinusers", async (req, res) => {
+router.post("/signup", async (req, res) => {
   const { error } = validatelogining(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
@@ -48,7 +48,7 @@ router.post("/signinusers", async (req, res) => {
 
 // to request & response to the api and database /  login
 
-router.post("/loginusers", async (req, res) => {
+router.post("/login", async (req, res) => {
   // handling the err for the joi
 
   const { error } = validateLogin(req.body);
@@ -68,7 +68,7 @@ router.post("/loginusers", async (req, res) => {
 });
 
 // to request & response to the api and database /  forget password find the email and generate otp
-router.post("/forgetpassword", async (req, res) => {
+router.post("/forget-password", async (req, res) => {
   const { email } = req.body;
 
   try {
@@ -107,7 +107,7 @@ router.post("/forgetpassword", async (req, res) => {
 
 // to request & response to the api and database /  verify otp
 
-router.post("/verifyotp", async (req, res) => {
+router.post("/verify-otp", async (req, res) => {
   const { otp } = req.body;
   try {
     const verifyotp = await UserModel.findOne({ otp });
@@ -125,7 +125,7 @@ router.post("/verifyotp", async (req, res) => {
   }
 });
 
-router.put("/updatepassword/:id", async (req, res) => {
+router.put("/reset-password/:id", async (req, res) => {
   const { password, confirm_password } = req.body;
   if (password !== confirm_password) {
     return res.status(400).json("Passwords Doesn't Match");
